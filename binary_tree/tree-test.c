@@ -47,6 +47,12 @@ int main(int argc, char **argv) {
 	printf("Traversing in order: ");
 	tree_traverse_in_order(&tree, tree.root, print_str);
 
+	printf("\nTraversing pre order: ");
+	tree_traverse_pre_order(&tree, tree.root, print_str);
+
+	printf("\nTraversing post order: ");
+	tree_traverse_post_order(&tree, tree.root, print_str);
+
 	/* Testing search */
 	printf("\nSearching element 'A'... ");
 	struct Node *p = tree_search(&tree, "A", comp_search);
