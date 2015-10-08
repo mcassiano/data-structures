@@ -16,7 +16,7 @@ void tree_init(struct Tree *tree);
 int tree_empty(struct Tree *tree);
 void tree_insert_recursive(struct Tree *tree, void *data, struct Node *node, int (*comparator) (void *, void *));
 void tree_insert(struct Tree *tree, void *data, int (*comparator) (void *, void *));
-void* tree_search(struct Tree *tree, int (*comparator) (void *, void *, void *));
+struct Node* tree_search(struct Tree *tree, void *dataSought, int (*comparator) (void *, struct Node *));
 void tree_remove(struct Tree *tree, struct Node *node);
 void tree_remove_all(struct Tree *tree);
 void tree_traverse_pre_order(struct Tree *tree, struct Node *node, void (*f) (struct Tree *, struct Node *));

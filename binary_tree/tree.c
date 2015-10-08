@@ -23,6 +23,9 @@ void tree_insert_recursive(struct Tree *tree, void *data, struct Node *node, int
     	return;
     }
     
+    /* If the result from the comparison is greater than
+        zero, look to the right */
+    
     else if (comparison > 0) {
         
         if (node->right == NULL) {
@@ -72,6 +75,32 @@ void tree_insert(struct Tree *tree, void *data, int (*comparator) (void *, void 
         tree_insert_recursive(tree, data, tree->root, comparator);
     
     tree->size += 1;
+}
+
+struct Node* tree_search(struct Tree *tree, void *dataSought, int (*comparator) (void *, struct Node *)) {
+
+    struct Node *node = tree->root;
+    struct Node *sought = NULL;
+
+    while (node != NULL) {
+
+        int comparison = comparator(dataSought, node);
+
+        if (comparison == 0) {
+            sought = node;
+            node = NULL;
+        }
+
+        else if (comparison < 0)
+            node = node->left;
+
+        else
+            node = node->right;
+
+    }
+
+    return sought;
+
 }
 
 void tree_traverse_in_order(struct Tree* tree, struct Node *node, void (*f)(struct Tree *, struct Node *)) {
